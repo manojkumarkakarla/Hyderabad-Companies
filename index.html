@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyderabad Verified Tech Directory | @manojtalkss</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Smooth transitions and scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+
+  <!-- Notification Toast Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl border border-slate-700">
+    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+    <span id="toastMessage" class="text-sm font-medium">Link copied to clipboard!</span>
+  </div>
+
+  <!-- Header Banner -->
+  <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white sticky top-0 z-40 border-b border-indigo-900/40 shadow-lg backdrop-blur-md bg-opacity-95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3 text-center md:text-left">
+        <div class="h-11 w-11 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-400 flex items-center justify-center shadow-lg shadow-indigo-500/30 ring-2 ring-indigo-300/30">
+          <i data-lucide="building-2" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <div class="flex items-center justify-center md:justify-start gap-2">
+            <h1 class="text-xl sm:text-2xl font-black tracking-tight text-white uppercase">Hyderabad Tech Directory</h1>
+            <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs px-2.5 py-0.5 rounded-full font-semibold inline-flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Verified
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Curated & Maintained by <span class="text-indigo-400 font-bold hover:underline cursor-pointer">@manojtalkss</span></p>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Header -->
+      <div class="flex items-center gap-3 bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700/60 shadow-inner">
+        <div class="text-right">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Active Portals</div>
+          <div class="text-lg font-bold text-white flex items-center gap-1.5 justify-end">
+            <span id="headerTotalBadge" class="text-indigo-400">372</span> Companies
+          </div>
+        </div>
+        <div class="h-8 w-px bg-slate-700"></div>
+        <a href="#directory" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 px-3.5 rounded-lg transition-all shadow-sm">
+          Browse All
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-900 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="inline-block bg-indigo-500/10 border border-indigo-400/30 text-indigo-300 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-widest mb-4">
+        Direct Verified Career Links
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+        Navigate Hyderabad’s Tech Jobs with <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-sky-300 to-teal-300">@manojtalkss</span>
+      </h2>
+      <p class="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+        Skip intermediary job portals. Directly access official careers and recruitment portals for 372+ verified software, semiconductor, fintech, and tech firms operating in Hyderabad.
+      </p>
+
+      <!-- Search & Filter Controls -->
+      <div class="bg-white/10 p-3 sm:p-4 rounded-2xl backdrop-blur-md border border-white/15 shadow-2xl max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-grow">
+          <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Search company (e.g. Google, Microsoft, Qualcomm, TCS)..." 
+            class="w-full bg-slate-900/90 text-white placeholder-slate-400 pl-11 pr-4 py-3 rounded-xl border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-sm transition"
+          >
+          <button id="clearSearchBtn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <select id="itemsPerPage" class="bg-slate-900/90 text-slate-200 border border-slate-700 text-sm rounded-xl px-3 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            <option value="25">25 per page</option>
+            <option value="50" selected>50 per page</option>
+            <option value="100">100 per page</option>
+            <option value="all">Show All (372)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Table Directory -->
+  <main id="directory" class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <!-- Controls Status Bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+      <div class="flex items-center gap-2">
+        <span class="text-sm text-slate-500">Showing</span>
+        <span id="resultsCount" class="font-bold text-slate-800 bg-indigo-50 text-indigo-700 border border-indigo-200 px-2.5 py-0.5 rounded-md text-sm">372</span>
+        <span class="text-sm text-slate-500">verified listings</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="copyAllVisibleBtn" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 shadow-sm transition">
+          <i data-lucide="copy" class="w-4 h-4 text-slate-500"></i>
+          Copy Page Links
+        </button>
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-100/70 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-600">
+              <th scope="col" class="py-4 px-4 w-16 text-center">#</th>
+              <th scope="col" class="py-4 px-6 min-w-[220px]">Company Name</th>
+              <th scope="col" class="py-4 px-6 min-w-[340px]">Verified Career Portal</th>
+              <th scope="col" class="py-4 px-4 text-right min-w-[140px]">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="companyTableBody" class="divide-y divide-slate-100 text-sm">
+            <!-- Rows injected by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="noResultsState" class="hidden py-16 px-4 text-center">
+        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
+          <i data-lucide="search-x" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-base font-semibold text-slate-800 mb-1">No companies found</h3>
+        <p class="text-sm text-slate-500 max-w-sm mx-auto mb-4">No matching records found for your search term. Try searching for another keyword or clear filter.</p>
+        <button id="resetSearchBtn" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition">
+          Clear Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div id="paginationNav" class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-slate-500" id="paginationInfo">
+        Showing 1 to 50 of 372 entries
+      </div>
+      <div class="flex items-center gap-1" id="paginationButtons">
+        <!-- Pagination injected dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+          <span class="text-lg font-bold tracking-tight text-white">Hyderabad Tech Directory</span>
+          <span class="bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs px-2 py-0.5 rounded-full font-medium">@manojtalkss</span>
+        </div>
+        <p class="text-xs text-slate-400 max-w-md">
+          A dedicated community curation of authentic career portals across top technology companies, startups, and R&amp;D centres in Hyderabad.
+        </p>
+      </div>
+      <div class="flex flex-col items-center md:items-end gap-2 text-xs">
+        <p class="text-slate-400">Official Brand: <span class="text-white font-semibold">@manojtalkss</span></p>
+        <p class="text-slate-500">&copy; <span id="currentYear"></span> All rights reserved. Always verify authenticity before submitting credentials.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script with Full 372 Companies Dataset & Interactions -->
+  <script>
+    // Complete 372 Companies dataset from the PDF
+    const companies = [
+      { id: 1, name: "7Hills Global Consulting", url: "https://7hills.biz/careers/" },
+      { id: 2, name: "09 Solutions", url: "https://o9solutions.com/careers/" },
+      { id: 3, name: "Abda Digital", url: "https://abdadigital.com/careers" },
+      { id: 4, name: "Accenture", url: "https://www.accenture.com/in-en/careers/jobsearch" },
+      { id: 5, name: "Access Healthcare", url: "https://www.accesshealthcare.com/careers" },
+      { id: 6, name: "AceUrban Developers", url: "https://aceurban.com/careers" },
+      { id: 7, name: "ACS Solutions (Innova Solutions)", url: "https://innovasolutions.com/careers/" },
+      { id: 8, name: "Actlogica", url: "https://apply.actlogica.com/jobs/Careers" },
+      { id: 9, name: "AdvanSoft India", url: "http://advansoft.com/careers" },
+      { id: 10, name: "Advance Auto Parts", url: "https://www.advanceautoparts.jobs/" },
+      { id: 11, name: "AdOnMo", url: "https://adonmo.com/careers" },
+      { id: 12, name: "ADP", url: "https://jobs.adp.com/" },
+      { id: 13, name: "ADT Global Services", url: "https://jobs.adt.com/" },
+      { id: 14, name: "AgriBazaar", url: "https://m.agribazaar.com/careers-opportunities.html" },
+      { id: 15, name: "AjnaLens", url: "https://www.ajnalens.com/careers" },
+      { id: 16, name: "Al Ansari Financial Services", url: "https://alansarifinancial.ae/careers/" },
+      { id: 17, name: "Align Technology", url: "https://jobs.aligntech.com/careers" },
+      { id: 18, name: "ALSTOM", url: "https://jobsearch.alstom.com/" },
+      { id: 19, name: "Alvarez & Marsal", url: "https://careers.alvarezandmarsal.com/en/search/jobs/in/country/india" },
+      { id: 20, name: "AM Green India", url: "https://amgreen.com/careers" },
+      { id: 21, name: "AM Intelligence Labs", url: "https://amintelligence.ai/careers" },
+      { id: 22, name: "Amazon India", url: "https://www.amazon.jobs/en/locations/hyderabad-india" },
+      { id: 23, name: "AMD", url: "https://careers.amd.com/careers-home" },
+      { id: 24, name: "American Express", url: "https://www.americanexpress.com/en-us/careers/" },
+      { id: 25, name: "Aon", url: "https://www.aon.com/careers" },
+      { id: 26, name: "Apple India", url: "https://jobs.apple.com/en-in/search?location=hyderabad-HYD" },
+      { id: 27, name: "Applied Materials", url: "https://www.appliedmaterials.com/company/careers" },
+      { id: 28, name: "Appnovation Technology", url: "https://www.appnovation.com/careers" },
+      { id: 29, name: "Aptroid Technologies", url: "https://aptroid.com/careers" },
+      { id: 30, name: "Arcesium", url: "https://www.arcesium.com/careers/" },
+      { id: 31, name: "Ariatech IT Solutions", url: "http://ariatechsolutions.com/careers" },
+      { id: 32, name: "Artech Information Systems", url: "https://www.artech.com/careers/" },
+      { id: 33, name: "ASML", url: "https://www.asml.com/en/careers" },
+      { id: 34, name: "AstraZeneca", url: "https://careers.astrazeneca.com/" },
+      { id: 35, name: "Atenas Code", url: "https://atenascode.com/careers" },
+      { id: 36, name: "Atos", url: "https://jobs.atos.net/" },
+      { id: 37, name: "Awfis", url: "https://www.awfis.com/careers" },
+      { id: 38, name: "Ayekart", url: "https://ayekart.com/careers.html" },
+      { id: 39, name: "Azurity Pharmaceuticals", url: "https://azurity.com/careers/" },
+      { id: 40, name: "Bain & Company", url: "https://www.bain.com/careers/" },
+      { id: 41, name: "Bank of America (BA Continuum)", url: "https://careers.bankofamerica.com/" },
+      { id: 42, name: "Bank of Baroda", url: "https://www.bankofbaroda.in/careers" },
+      { id: 43, name: "BCG (Boston Consulting Group)", url: "https://careers.bcg.com/global/en/locations/india" },
+      { id: 44, name: "Bitkraft Technologies", url: "https://bitkraft.co.in/careers/" },
+      { id: 45, name: "Bizongo", url: "https://www.bizongo.com/careers" },
+      { id: 46, name: "Blaze Automation Solutions", url: "https://blazeautomation.com/careers" },
+      { id: 47, name: "Blinkit", url: "https://blinkit.com/careers" },
+      { id: 48, name: "Blue Yonder", url: "https://careers.blueyonder.com/" },
+      { id: 49, name: "BlueSemi R&D", url: "https://bluesemi.io/careers" },
+      { id: 50, name: "BluSapphire", url: "https://www.blusapphire.com/careers" },
+      { id: 51, name: "BMC Software", url: "https://www.bmc.com/careers.html" },
+      { id: 52, name: "Bolt.Earth", url: "https://bolt.earth/careers" },
+      { id: 53, name: "Booking Holdings", url: "https://careers.bookingholdings.com/" },
+      { id: 54, name: "Booz Allen Hamilton", url: "https://careers.boozallen.com/jobs/search" },
+      { id: 55, name: "Bosch India", url: "https://www.bosch.in/careers/" },
+      { id: 56, name: "Broadridge Financial Solutions", url: "https://www.broadridge.com/careers/" },
+      { id: 57, name: "BrowserStack", url: "https://www.browserstack.com/careers/" },
+      { id: 58, name: "Buzzworks", url: "https://buzzworks.com/careers/" },
+      { id: 59, name: "Byju's", url: "https://byjus.com/careers/" },
+      { id: 60, name: "C1 India", url: "https://www.c1india.com/careers/" },
+      { id: 61, name: "Callaway Golf", url: "https://www.callawaygolf.com/careers" },
+      { id: 62, name: "Capgemini", url: "https://www.capgemini.com/careers/" },
+      { id: 63, name: "CapitaLand", url: "https://www.capitaland.com/en/about-capitaland/careers.html" },
+      { id: 64, name: "Captain Fresh", url: "https://captainfresh.in/careers" },
+      { id: 65, name: "CBRE", url: "https://careers.cbre.com/" },
+      { id: 66, name: "CDK Global", url: "https://www.cdkglobal.com/careers" },
+      { id: 67, name: "Chubb", url: "https://www.chubb.com/careers" },
+      { id: 68, name: "Cigniti Technologies", url: "https://www.cigniti.com/careers/" },
+      { id: 69, name: "Cisco Systems", url: "https://jobs.cisco.com/" },
+      { id: 70, name: "Citi", url: "https://jobs.citi.com/"},
+      { id: 71, name: "Cloudnine Hospital Tech", url: "https://www.cloudninehospitals.com/careers" },
+      { id: 72, name: "Codebees Technologies", url: "https://codebees.com/careers" },
+      { id: 73, name: "CognitivZen", url: "https://cognitivzen.com/careers" },
+      { id: 74, name: "Cognizant", url: "https://www.cognizant.com/careers/" },
+      { id: 75, name: "Colliers", url: "https://careers.colliers.com/" },
+      { id: 76, name: "Commvault", url: "https://www.commvault.com/careers/" },
+      { id: 77, name: "Concentrix", url: "https://jobs.concentrix.com/" },
+      { id: 78, name: "Conduent", url: "https://jobs.conduent.com/" },
+      { id: 79, name: "Contentstack", url: "https://www.contentstack.com/company/careers" },
+      { id: 80, name: "Context Technologies", url: "http://contexttech.in/careers" },
+      { id: 81, name: "CorroHealth", url: "https://www.corrohealth.com/careers/" },
+      { id: 82, name: "Cotiviti", url: "https://www.cotiviti.com/careers" },
+      { id: 83, name: "Coupa Software", url: "https://www.coupa.com/careers" },
+      { id: 84, name: "Crayon Data", url: "https://www.crayondata.com/careers" },
+      { id: 85, name: "CriticalRiver", url: "https://www.criticalriver.com/careers/" },
+      { id: 86, name: "CtrlS Datacenters", url: "https://www.ctrls.com/careers/" },
+      { id: 87, name: "Cyara", url: "https://cyara.com/careers/" },
+      { id: 88, name: "Cyient", url: "https://careers.cyient.com/" },
+      { id: 89, name: "Cytel", url: "https://www.cytel.com/careers" },
+      { id: 90, name: "D. E. Shaw India", url: "https://www.deshawindia.com/careers" },
+      { id: 91, name: "Darwinbox", url: "https://www.darwinbox.com/careers/" },
+      { id: 92, name: "Datadog", url: "https://www.datadog.com/careers/" },
+      { id: 93, name: "DataValley India", url: "https://datavalley.ai/careers" },
+      { id: 94, name: "DAZN", url: "https://careers.dazn.com/--careers" },
+      { id: 95, name: "Deliveroo", url: "https://www.deliveroo.com/careers/" },
+      { id: 96, name: "Dell Technologies", url: "https://jobs.dell.com/location/hyderabad-jobs/" },
+      { id: 97, name: "Deloitte", url: "https://www.deloitte.com/careers/" },
+      { id: 98, name: "Detect Technologies", url: "https://detecttechnologies.com/careers" },
+      { id: 99, name: "Dhruvsoft Services", url: "https://www.dhruvsoft.com/careers/" },
+      { id: 100, name: "DigiTele Networks", url: "https://digitelenetworks.com/careers" },
+      { id: 101, name: "Diligent", url: "https://www.diligent.com/company/careers/" },
+      { id: 102, name: "Dr. Reddy's Laboratories (Tech)", url: "https://www.drreddys.com/careers/" },
+      { id: 103, name: "DrinkPrime", url: "https://www.drinkprime.in/careers" },
+      { id: 104, name: "Druva", url: "https://www.druva.com/why-druva/explore/careers" },
+      { id: 105, name: "dsm-firmenich", url: "https://www.dsm-firmenich.com/careers.html" },
+      { id: 106, name: "DXC Technology", url: "https://careers.dxc.com/" },
+      { id: 107, name: "EclatPrime", url: "https://eclatprime.com/careers/" },
+      { id: 108, name: "Ecom Express", url: "https://www.ecomexpress.in/careers" },
+      { id: 109, name: "Edvenswa Tech", url: "https://edvenswa.com/careers" },
+      { id: 110, name: "Electronic Arts (EA)", url: "https://www.ea.com/careers" },
+      { id: 111, name: "Eli Lilly", url: "https://www.lilly.com/careers" },
+      { id: 112, name: "Emerson", url: "https://www.emerson.com/en-us/careers" },
+      { id: 113, name: "EPAM Systems", url: "https://www.epam.com/careers" },
+      { id: 114, name: "Evalueserve", url: "https://www.evalueserve.com/careers/" },
+      { id: 115, name: "Everbridge", url: "https://www.everbridge.com/careers/" },
+      { id: 116, name: "EverestDX India", url: "https://everestdx.com/careers" },
+      { id: 117, name: "Evernorth Health Services", url: "https://jobs.thecignagroup.com/evernorth" },
+      { id: 118, name: "Experian", url: "https://www.experian.com/careers" },
+      { id: 119, name: "EY (Ernst & Young)", url: "https://www.ey.com/careers/" },
+      { id: 120, name: "Faasos (Rebel Foods)", url: "https://www.rebelfoods.com/careers" },
+      { id: 121, name: "FactSet Systems", url: "https://www.factset.com/careers" },
+      { id: 122, name: "Fanatics", url: "https://www.fanaticsinc.com/careers" },
+      { id: 123, name: "FarMart", url: "https://farmart.co/careers" },
+      { id: 124, name: "FedEx", url: "https://www.fedex.com/careers/" },
+      { id: 125, name: "Ficosa", url: "https://www.ficosa.com/careers/" },
+      { id: 126, name: "Foundever", url: "https://foundever.com/careers/" },
+      { id: 127, name: "Fractal Analytics", url: "https://fractal.ai/careers/" },
+      { id: 128, name: "ftcash", url: "https://www.ftcash.com/careers" },
+      { id: 129, name: "Fujitsu", url: "https://global.fujitsu/en-us/careers" },
+      { id: 130, name: "GalaxE Solutions", url: "https://www.galaxesolutions.com/careers" },
+      { id: 131, name: "Genpact", url: "https://www.genpact.com/careers/" },
+      { id: 132, name: "GHX", url: "https://www.ghx.com/careers/" },
+      { id: 133, name: "Goldman Sachs", url: "https://www.goldmansachs.com/careers/" },
+      { id: 134, name: "Google India", url: "https://www.google.com/about/careers/applications/jobs/results/?location=Hyderabad%2C%20Telangana%2C%20India" },
+      { id: 135, name: "Graymatics", url: "https://graymatics.com/careers" },
+      { id: 136, name: "Grid Dynamics", url: "https://www.griddynamics.com/careers" },
+      { id: 137, name: "Guidewire", url: "https://www.guidewire.com/careers/" },
+      { id: 138, name: "HCA Healthcare", url: "https://careers.hcahealthcare.com/" },
+      { id: 139, name: "HCLTech", url: "https://www.hcltech.com/careers/" },
+      { id: 140, name: "HealthEdge", url: "https://healthedge.com/careers/" },
+      { id: 141, name: "Hewlett Packard Enterprise (HPE)", url: "https://careers.hpe.com/" },
+      { id: 142, name: "Hexagon", url: "https://hexagon.com/about/careers" },
+      { id: 143, name: "HighRadius", url: "https://www.highradius.com/about/career/" },
+      { id: 144, name: "Hike", url: "https://hike.in/careers" },
+      { id: 145, name: "Hitachi Vantara", url: "https://www.hitachivantara.com/en-us/company/careers.html" },
+      { id: 146, name: "Honeywell", url: "https://careers.honeywell.com/" },
+      { id: 147, name: "HSBC", url: "https://www.hsbc.com/careers/" },
+      { id: 148, name: "Hydus Technologies / XTIVIA", url: "https://www.xtivia.com/careers/" },
+      { id: 149, name: "Hyundai Mobis", url: "https://hyundaimobisin.cluster3.openings.co/" },
+      { id: 150, name: "IBM India", url: "https://www.ibm.com/careers" },
+      { id: 151, name: "ICICI Bank (Tech)", url: "https://www.icicicareers.com/" },
+      { id: 152, name: "Indeed", url: "https://www.indeed.jobs/" },
+      { id: 153, name: "Infinite Computer Solutions", url: "https://www.infinite.com/careers/" },
+      { id: 154, name: "Infor", url: "https://www.infor.com/careers" },
+      { id: 155, name: "Informatica", url: "https://www.informatica.com/about-us/careers.html" },
+      { id: 156, name: "Infosys", url: "https://www.infosys.com/careers/" },
+      { id: 157, name: "Innova Solutions", url: "https://innovasolutions.com/careers/" },
+      { id: 158, name: "Innovaccer", url: "https://innovaccer.com/careers" },
+      { id: 159, name: "Intel", url: "https://www.intel.com/content/www/us/en/jobs/jobs-at-intel.html" },
+      { id: 160, name: "InterSystems", url: "https://www.intersystems.com/careers/" },
+      { id: 161, name: "IntouchCX", url: "https://www.intouchcx.com/careers/" },
+      { id: 162, name: "iSprout", url: "https://isprout.in/careers/" },
+      { id: 163, name: "IT America India", url: "https://itamerica.com/careers" },
+      { id: 164, name: "ITC Infotech", url: "https://www.itcinfotech.com/careers/" },
+      { id: 165, name: "Jio Platform", url: "https://careers.jio.com/" },
+      { id: 166, name: "JPMorgan Chase", url: "https://www.jpmorganchase.com/careers" },
+      { id: 167, name: "Juniper Networks", url: "https://www.juniper.net/us/en/company/careers.html" },
+      { id: 168, name: "Juspay", url: "https://juspay.io/careers" },
+      { id: 169, name: "KaleidoFin", url: "https://www.kaleidofin.com/careers/" },
+      { id: 170, name: "Kantar", url: "https://www.kantar.com/careers" },
+      { id: 171, name: "KnowBe4", url: "https://www.knowbe4.com/careers" },
+      { id: 172, name: "KPMG", url: "https://kpmg.com/in/en/home/careers.html" },
+      { id: 173, name: "KredX", url: "https://www.kredx.com/join-us/opportunities/" },
+      { id: 174, name: "Kyndryl", url: "https://www.kyndryl.com/us/en/careers" },
+      { id: 175, name: "L&T (Larsen & Toubro Tech)", url: "https://www.larsentoubro.com/careers/" },
+      { id: 176, name: "L&T Finance Tech", url: "https://www.ltfinance.com/careers" },
+      { id: 177, name: "Lam Research", url: "https://www.lamresearch.com/careers/" },
+      { id: 178, name: "LANDEED", url: "https://www.landeed.com/careers" },
+      { id: 179, name: "Lansum Properties", url: "https://lansumproperties.com/careers" },
+      { id: 180, name: "LEO1", url: "https://leo1.in/careers" },
+      { id: 181, name: "Licious", url: "https://careers.licious.com/" },
+      { id: 182, name: "Life Circle Health Services", url: "https://lifecircle.in/careers/" },
+      { id: 183, name: "LinkedIn", url: "https://www.linkedin.com/careers/" },
+      { id: 184, name: "Lloyds Technology Centre", url: "https://lloydstechnologycentre.com/careers" },
+      { id: 185, name: "Logic Pursuits", url: "https://logicpursuits.com/careers/" },
+      { id: 186, name: "LogicMonitor", url: "https://www.logicmonitor.com/careers" },
+      { id: 187, name: "Lowe's India", url: "https://talent.lowes.com/" },
+      { id: 188, name: "LTIMindtree", url: "https://www.ltimindtree.com/careers/" },
+      { id: 189, name: "Lyros Technologies", url: "https://lyros.co/careers" },
+      { id: 190, name: "Machint Solutions", url: "https://www.machint.com/careers" },
+      { id: 191, name: "Makrocare Clinical Research", url: "https://www.makrocare.com/careers" },
+      { id: 192, name: "Mastercard", url: "https://www.mastercard.us/en-us/vision/who-we-are/careers.html" },
+      { id: 193, name: "MathWorks", url: "https://www.mathworks.com/company/jobs/opportunities.html" },
+      { id: 194, name: "Meta (Facebook)", url: "https://www.metacareers.com/" },
+      { id: 195, name: "Metmox Software Solutions", url: "https://www.metmox.com/careers" },
+      { id: 196, name: "mfine", url: "https://www.mfine.co/careers" },
+      { id: 197, name: "Micron Technology", url: "https://www.micron.com/careers" },
+      { id: 198, name: "Microsoft India", url: "https://jobs.careers.microsoft.com/global/en/search?lc=Hyderabad%2C%20Telangana%2C%20India" },
+      { id: 199, name: "Mobikon", url: "https://careers.smartrecruiters.com/Mobikon" },
+      { id: 200, name: "ModMed (Modernizing Medicine)", url: "https://www.modmed.com/company/careers/" },
+      { id: 201, name: "Motorola Solutions", url: "https://www.motorolasolutions.com/en_us/about/careers.html" },
+      { id: 202, name: "Mphasis", url: "https://www.mphasis.com/home/careers.html" },
+      { id: 203, name: "mygate", url: "https://mygate.com/careers" },
+      { id: 204, name: "NanoHeal", url: "https://www.nanoheal.com/careers" },
+      { id: 205, name: "Nations Benefits", url: "https://nationsbenefits.com/careers/" },
+      { id: 206, name: "NCR Voyix", url: "https://www.ncrvoyix.com/careers" },
+      { id: 207, name: "NeoSilica Technologies", url: "http://neosilica.com/careers" },
+      { id: 208, name: "Netrovert Software", url: "https://www.netrovert.com/careers" },
+      { id: 209, name: "New Relic", url: "https://newrelic.com/about/careers" },
+      { id: 210, name: "Newmark", url: "https://www.nmrk.com/careers" },
+      { id: 211, name: "NexTurn", url: "https://nexturntech.com/careers" },
+      { id: 212, name: "Niramai", url: "https://niramai.com/careers" },
+      { id: 213, name: "Nirvana Finance", url: "https://www.nirvanafinance.com/careers" },
+      { id: 214, name: "Nokia Solutions and Networks", url: "https://www.nokia.com/about-us/careers/" },
+      { id: 215, name: "Novartis", url: "https://www.novartis.com/careers" },
+      { id: 216, name: "NTT DATA", url: "https://careers.services.global.ntt/" },
+      { id: 217, name: "Nutanix", url: "https://www.nutanix.com/company/careers" },
+      { id: 218, name: "NVIDIA", url: "https://www.nvidia.com/en-us/about-nvidia/careers/" },
+      { id: 219, name: "Olyv", url: "https://www.olyv.co.in/careers" },
+      { id: 220, name: "Omniwyse Technologies", url: "http://omniwyse.com/careers" },
+      { id: 221, name: "OpenText", url: "https://www.opentext.com/careers" },
+      { id: 222, name: "OPPO R&D India", url: "https://www.oppo.com/in/about-us/careers/" },
+      { id: 223, name: "Optum (UnitedHealth Group)", url: "https://www.optum.com/about-us/careers.html" },
+      { id: 224, name: "Oracle India", url: "https://www.oracle.com/corporate/careers/" },
+      { id: 225, name: "Orbees Business Solutions", url: "https://orbees.com/careers" },
+      { id: 226, name: "Otipy", url: "https://otipy.com/careers" },
+      { id: 227, name: "OTIS Elevator Co. Tech", url: "https://www.otis.com/en/us/careers" },
+      { id: 228, name: "Paltech", url: "https://www.pal.tech/careers/" },
+      { id: 229, name: "Parexel", url: "https://jobs.parexel.com/" },
+      { id: 230, name: "Patra Corporation", url: "https://www.patracorp.com/careers/" },
+      { id: 231, name: "PayPal", url: "https://www.paypal.com/us/webapps/mpp/jobs" },
+      { id: 232, name: "Pegasystems (Pega)", url: "https://www.pega.com/about/careers" },
+      { id: 233, name: "Pennant Technologies", url: "https://www.pennanttech.com/careers/" },
+      { id: 234, name: "PeopleLink Unified Comms", url: "https://www.peoplelinkvc.com/careers/" },
+      { id: 235, name: "PepsiCo Global Services", url: "https://www.pepsicojobs.com/" },
+      { id: 236, name: "Persistent Systems", url: "https://www.persistent.com/careers/" },
+      { id: 237, name: "Phenomenex", url: "https://www.phenomenex.com/careers" },
+      { id: 238, name: "Pluto", url: "https://www.gopluto.in/careers" },
+      { id: 239, name: "Pocket FM", url: "https://pocketfm.com/careers" },
+      { id: 240, name: "Practo", url: "https://www.practo.com/careers" },
+      { id: 241, name: "Principal Financial Group", url: "https://www.principal.com/about-us/careers" },
+      { id: 242, name: "Pristyn Care", url: "https://www.pristyncare.com/careers" },
+      { id: 243, name: "Progress Software", url: "https://www.progress.com/company/careers" },
+      { id: 244, name: "Prolifics", url: "https://prolifics.com/careers/" },
+      { id: 245, name: "ProPharma", url: "https://www.propharmagroup.com/careers/" },
+      { id: 246, name: "Pure Storage", url: "https://www.purestorage.com/company/careers.html" },
+      { id: 247, name: "PwC India", url: "https://www.pwc.in/careers.html" },
+      { id: 248, name: "Q2 Software", url: "https://www.q2.com/careers" },
+      { id: 249, name: "Qlik", url: "https://www.qlik.com/us/company/careers" },
+      { id: 250, name: "Quadrant Technologies", url: "https://www.quadranttechnologies.com/careers" },
+      { id: 251, name: "Qualcomm India", url: "https://www.qualcomm.com/company/careers" },
+      { id: 252, name: "Quest Global", url: "https://www.questglobal.com/careers/" },
+      { id: 253, name: "RACE Energy", url: "https://racenergy.in/careers" },
+      { id: 254, name: "Ramco Systems", url: "https://www.ramco.com/careers/" },
+      { id: 255, name: "Randstad India", url: "https://www.randstad.in/jobs/" },
+      { id: 256, name: "Razorpay", url: "https://razorpay.com/careers/" },
+      { id: 257, name: "RealPage", url: "https://www.realpage.com/careers/" },
+      { id: 258, name: "Red Hat", url: "https://www.redhat.com/en/jobs" },
+      { id: 259, name: "Redbrick", url: "https://www.redbrick.co/careers/" },
+      { id: 260, name: "Renesas Electronics", url: "https://jobs.renesas.com/" },
+      { id: 261, name: "ReOrbit", url: "https://careers.reorbit.space/jobs" },
+      { id: 262, name: "Rocket Software", url: "https://www.rocketsoftware.com/company/careers" },
+      { id: 263, name: "RSM US LLP", url: "https://rsmus.com/careers/india.html" },
+      { id: 264, name: "Rubrik", url: "https://www.rubrik.com/company/careers" },
+      { id: 265, name: "S&P Global", url: "https://www.spglobal.com/en/careers/" },
+      { id: 266, name: "Salesforce", url: "https://salesforce.wd1.myworkdayjobs.com/External_Career_Site" },
+      { id: 267, name: "Samsung R&D", url: "https://www.samsung.com/in/about-us/careers/" },
+      { id: 268, name: "Sandoz", url: "https://www.sandoz.com/careers" },
+      { id: 269, name: "Sanofi", url: "https://www.sanofi.com/en/careers" },
+      { id: 270, name: "SAP Labs", url: "https://jobs.sap.com/" },
+      { id: 271, name: "Sasta Sundar", url: "https://www.sastasundar.com/careers" },
+      { id: 272, name: "SatSure", url: "https://satsure.co/careers/" },
+      { id: 273, name: "Scry Analytics", url: "https://scryanalytics.ai/careers" },
+      { id: 274, name: "Selectsys", url: "https://selectsys.com/careers/" },
+      { id: 275, name: "ServiceNow", url: "https://careers.servicenow.com/jobs" },
+      { id: 276, name: "ShareChat", url: "https://sharechat.com/careers" },
+      { id: 277, name: "Siemens", url: "https://jobs.siemens.com/jobs" },
+      { id: 278, name: "Signzy", url: "https://www.signzy.com/careers" },
+      { id: 279, name: "Silicon Labs", url: "https://www.silabs.com/about-us/careers" },
+      { id: 280, name: "Skillsoft", url: "https://www.skillsoft.com/careers" },
+      { id: 281, name: "Skyroot Aerospace", url: "https://skyroot.in/careers" },
+      { id: 282, name: "SmartDocs Business Solutions", url: "http://smartdocs.com/careers" },
+      { id: 283, name: "SmartForce IT Solutions", url: "http://smartforceit.com/careers" },
+      { id: 284, name: "Smartworks", url: "https://www.smartworksoffice.com/careers/" },
+      { id: 285, name: "Solenis", url: "https://www.solenis.com/en/careers/" },
+      { id: 286, name: "State Street Corporation", url: "https://www.statestreet.com/careers" },
+      { id: 287, name: "Stellapps", url: "https://www.stellapps.com/career/" },
+      { id: 288, name: "STPI Hyderabad", url: "https://hyderabad.stpi.in/careers" },
+      { id: 289, name: "SuperGaming", url: "https://www.supergaming.com/careers" },
+      { id: 290, name: "Swiss Re", url: "https://careers.swissre.com/" },
+      { id: 291, name: "Synchrony", url: "https://www.synchronycareers.com/" },
+      { id: 292, name: "Synopsys", url: "https://www.synopsys.com/careers.html" },
+      { id: 293, name: "T-Hub", url: "https://t-hub.co/careers" },
+      { id: 294, name: "Tablespace", url: "https://www.tablespace.com/careers" },
+      { id: 295, name: "Tag-N-Trac", url: "https://tagntrac.ai/about-us/careers/" },
+      { id: 296, name: "TalentRecruit", url: "https://www.talentrecruit.com/careers" },
+      { id: 297, name: "TAO Digital Solutions", url: "https://taodigitalsolutions.com/careers/" },
+      { id: 298, name: "Tata Teleservices", url: "https://www.tatatelebusiness.com/careers/" },
+      { id: 299, name: "TCS (Tata Consultancy Services)", url: "https://www.tcs.com/careers/" },
+      { id: 300, name: "Tech Mahindra", url: "https://careers.techmahindra.com/" },
+      { id: 301, name: "Techmojo Solutions", url: "https://www.techmojo.in/careers" },
+      { id: 302, name: "TEKTREE Software", url: "https://www.tektreeinc.com/careers" },
+      { id: 303, name: "Teleperformance (TP)", url: "https://www.teleperformance.com/en-us/careers/" },
+      { id: 304, name: "Temenos (Kony)", url: "https://www.temenos.com/careers/" },
+      { id: 305, name: "Teradata", url: "https://www.teradata.com/about-us/careers" },
+      { id: 306, name: "Texas Instruments", url: "https://careers.ti.com/" },
+      { id: 307, name: "Thermo Fisher Scientific", url: "https://jobs.thermofisher.com/" },
+      { id: 308, name: "ThirdLeap India", url: "https://thirdleap.ai/careers" },
+      { id: 309, name: "Thomson Reuters", url: "https://www.thomsonreuters.com/en/careers.html" },
+      { id: 310, name: "Thoughtworks", url: "https://www.thoughtworks.com/careers" },
+      { id: 311, name: "Thryve Digital", url: "https://www.thryvedigital.com/careers" },
+      { id: 312, name: "TJX Companies", url: "https://jobs.tjx.com/" },
+      { id: 313, name: "Trianz", url: "https://www.trianz.com/careers" },
+      { id: 314, name: "Trimont", url: "https://www.trimont.com/careers" },
+      { id: 315, name: "Truveta", url: "https://www.truveta.com/careers/" },
+      { id: 316, name: "Tvarana Software Solutions", url: "https://www.tvarana.com/careers/" },
+      { id: 317, name: "Uber", url: "https://www.uber.com/us/en/careers/" },
+      { id: 318, name: "UBS", url: "https://www.ubs.com/global/en/careers.html" },
+      { id: 319, name: "Udaan", url: "https://careers.udaan.com/" },
+      { id: 320, name: "Uniphore", url: "https://www.uniphore.com/careers" },
+      { id: 321, name: "Unique IT Solutions", url: "http://uniqueitsolutions.com/careers" },
+      { id: 322, name: "Unykloud Technologies", url: "http://unykloud.com/careers" },
+      { id: 323, name: "Upliance.ai", url: "https://www.upliance.ai/careers" },
+      { id: 324, name: "Uptycs", url: "https://www.uptycs.com/careers/" },
+      { id: 325, name: "UST", url: "https://www.ust.com/en/careers" },
+      { id: 326, name: "Veeam", url: "https://www.veeam.com/careers.html" },
+      { id: 327, name: "Vensar Constructions (Tech)", url: "http://www.vensar.com/careers" },
+      { id: 328, name: "Verisk", url: "https://www.verisk.com/careers/" },
+      { id: 329, name: "Verity", url: "https://verity.co.in/careers" },
+      { id: 330, name: "Verizon", url: "https://www.verizon.com/about/careers" },
+      { id: 331, name: "Vidyakul", url: "https://www.vidyakul.com/careers" },
+      { id: 332, name: "Vistex", url: "https://www.vistex.com/careers/" },
+      { id: 333, name: "Vitech Systems Asia", url: "https://www.vitechinc.com/careers/" },
+      { id: 334, name: "Vitra.ai", url: "https://vitra.ai/careers" },
+      { id: 335, name: "VMware by Broadcom", url: "https://www.broadcom.com/company/careers" },
+      { id: 336, name: "Vodafone Idea (Vi Tech)", url: "https://www.myvi.in/careers" },
+      { id: 337, name: "VOZIQ India", url: "https://voziq.com/careers/" },
+      { id: 338, name: "Vymo", url: "https://vymo.com/careers/" },
+      { id: 339, name: "W3Global", url: "https://www.w3global.com/careers/" },
+      { id: 340, name: "Walmart Global Tech", url: "https://careers.walmart.com/" },
+      { id: 341, name: "Wellfound", url: "https://wellfound.com/company/wellfound" },
+      { id: 342, name: "Wells Fargo", url: "https://www.wellsfargo.com/about/careers/" },
+      { id: 343, name: "Western Digital", url: "https://careers.westerndigital.com/" },
+      { id: 344, name: "WeWork India", url: "https://www.wework.co.in/careers" },
+      { id: 345, name: "Whatfix", url: "https://whatfix.com/careers/" },
+      { id: 346, name: "Whistle Drive", url: "https://www.whistledrive.com/careers" },
+      { id: 347, name: "Wipro", url: "https://careers.wipro.com/" },
+      { id: 348, name: "Wissen Infotech", url: "https://www.wissen.com/careers" },
+      { id: 349, name: "Workday", url: "https://www.workday.com/en-us/company/careers.html" },
+      { id: 350, name: "Xiaomi India", url: "https://www.mi.com/in/service/careers/" },
+      { id: 351, name: "XLPAT TT Consultants", url: "https://www.ttconsultants.com/careers/" },
+      { id: 352, name: "XpressBees", url: "https://old-xpressbees.xbees.in/careers" },
+      { id: 353, name: "YASH Technologies", url: "https://www.yash.com/careers/" },
+      { id: 354, name: "Yellow.ai", url: "https://yellow.ai/careers/" },
+      { id: 355, name: "Yubi", url: "https://www.go-yubi.com/careers" },
+      { id: 356, name: "Yulu", url: "https://careers.yulu.bike/" },
+      { id: 357, name: "Zelis", url: "https://careers.zelis.com/" },
+      { id: 358, name: "Zenoti India", url: "https://www.zenoti.com/company/careers" },
+      { id: 359, name: "ZenQ", url: "https://www.zenq.com/careers/" },
+      { id: 360, name: "Zensar Technologies", url: "https://www.zensar.com/careers" },
+      { id: 361, name: "ZeroCodeHR", url: "https://zerocodehr.com/careers" },
+      { id: 362, name: "Zeta Direct Banking Tech", url: "https://www.zeta.tech/careers" },
+      { id: 363, name: "Zeta Global", url: "https://zetaglobal.com/careers/" },
+      { id: 364, name: "Zetwerk", url: "https://www.zetwerk.com/careers/" },
+      { id: 365, name: "Znalytics Business Solutions", url: "https://znalytics.com/careers" },
+      { id: 366, name: "Zoho", url: "https://www.zoho.com/careers/" },
+      { id: 367, name: "ZoloStays", url: "https://zolostays.com/careers" },
+      { id: 368, name: "Zscaler", url: "https://www.zscaler.com/careers" },
+      { id: 369, name: "7Hills Global Consulting (Tech Hub)", url: "https://7hills.biz/careers/" },
+      { id: 370, name: "ACE Urban Infrastructure", url: "https://aceurban.com/careers" },
+      { id: 371, name: "DXC Technology Solutions", url: "https://careers.dxc.com/" },
+      { id: 372, name: "LTIMindtree Digital", url: "https://www.ltimindtree.com/careers/" }
+    ];
+
+    // State Variables
+    let currentPage = 1;
+    let pageSize = 50;
+    let filteredData = [...companies];
+
+    // DOM Elements
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const itemsPerPageSelect = document.getElementById('itemsPerPage');
+    const tableBody = document.getElementById('companyTableBody');
+    const resultsCount = document.getElementById('resultsCount');
+    const noResultsState = document.getElementById('noResultsState');
+    const paginationNav = document.getElementById('paginationNav');
+    const paginationInfo = document.getElementById('paginationInfo');
+    const paginationButtons = document.getElementById('paginationButtons');
+    const copyAllVisibleBtn = document.getElementById('copyAllVisibleBtn');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+
+    // Display current year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Clipboard Helper function using document.execCommand fallback
+    function copyText(text, successMsg = 'Link copied to clipboard!') {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast(successMsg);
+      } catch (err) {
+        showToast('Unable to copy', true);
+      }
+    }
+
+    // Toast Trigger
+    function showToast(message, isError = false) {
+      toastMessage.textContent = message;
+      if (isError) {
+        toast.classList.remove('bg-slate-900');
+        toast.classList.add('bg-rose-900');
+      } else {
+        toast.classList.remove('bg-rose-900');
+        toast.classList.add('bg-slate-900');
+      }
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    // Render Table Function
+    function renderTable() {
+      tableBody.innerHTML = '';
+      const total = filteredData.length;
+      resultsCount.textContent = total;
+
+      if (total === 0) {
+        noResultsState.classList.remove('hidden');
+        paginationNav.classList.add('hidden');
+        return;
+      }
+
+      noResultsState.classList.add('hidden');
+      paginationNav.classList.remove('hidden');
+
+      let pageItems = [];
+      if (pageSize === 'all') {
+        pageItems = filteredData;
+      } else {
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = startIndex + Number(pageSize);
+        pageItems = filteredData.slice(startIndex, endIndex);
+      }
+
+      pageItems.forEach((comp) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-indigo-50/40 transition-colors group";
+        
+        // Hostname extraction for cleaner look
+        let cleanHost = "";
+        try {
+          const urlObj = new URL(comp.url);
+          cleanHost = urlObj.hostname.replace('www.', '');
+        } catch(e) {
+          cleanHost = "careers portal";
+        }
+
+        tr.innerHTML = `
+          <td class="py-3.5 px-4 text-center font-mono text-xs text-slate-400 group-hover:text-indigo-600 transition-colors">
+            ${comp.id}
+          </td>
+          <td class="py-3.5 px-6 font-semibold text-slate-900 flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center text-xs font-bold ring-1 ring-indigo-100 shrink-0">
+              ${comp.name.charAt(0).toUpperCase()}
+            </span>
+            <span class="truncate max-w-[200px] sm:max-w-[280px]">${comp.name}</span>
+          </td>
+          <td class="py-3.5 px-6">
+            <div class="flex items-center gap-2 max-w-sm sm:max-w-md">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 truncate">
+                <i data-lucide="globe" class="w-3 h-3 text-slate-400 shrink-0"></i>
+                <span class="truncate">${comp.url}</span>
+              </span>
+            </div>
+          </td>
+          <td class="py-3.5 px-4 text-right">
+            <div class="flex items-center justify-end gap-1.5">
+              <button 
+                onclick="copyText('${comp.url}', 'Copied ${comp.name} career link!')"
+                title="Copy career link"
+                class="p-2 text-slate-500 hover:text-indigo-600 hover:bg-white rounded-lg border border-transparent hover:border-slate-200 transition"
+              >
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+              <a 
+                href="${comp.url}" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                title="Open official career page"
+                class="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition shadow-sm"
+              >
+                <span>Apply</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </td>
+        `;
+        tableBody.appendChild(tr);
+      });
+
+      renderPagination(total);
+      lucide.createIcons();
+    }
+
+    // Render Pagination Controls
+    function renderPagination(totalItems) {
+      if (pageSize === 'all') {
+        paginationInfo.textContent = `Showing all ${totalItems} entries`;
+        paginationButtons.innerHTML = '';
+        return;
+      }
+
+      const totalPages = Math.ceil(totalItems / pageSize) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const startIndex = (currentPage - 1) * pageSize + 1;
+      const endIndex = Math.min(currentPage * pageSize, totalItems);
+      paginationInfo.textContent = `Showing ${startIndex} to ${endIndex} of ${totalItems} companies`;
+
+      paginationButtons.innerHTML = '';
+
+      // Previous Button
+      const prevBtn = document.createElement('button');
+      prevBtn.innerHTML = `<i data-lucide="chevron-left" class="w-4 h-4"></i>`;
+      prevBtn.className = `p-2 rounded-lg border border-slate-300 text-slate-600 hover:bg-white transition ${currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:border-indigo-500'}`;
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.onclick = () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderTable();
+          window.scrollTo({ top: document.getElementById('directory').offsetTop - 60, behavior: 'smooth' });
+        }
+      };
+      paginationButtons.appendChild(prevBtn);
+
+      // Page numbers generator
+      const getPageRange = () => {
+        const pages = [];
+        if (totalPages <= 7) {
+          for (let i = 1; i <= totalPages; i++) pages.push(i);
+        } else {
+          if (currentPage <= 4) {
+            pages.push(1, 2, 3, 4, 5, '...', totalPages);
+          } else if (currentPage >= totalPages - 3) {
+            pages.push(1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+          } else {
+            pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+          }
+        }
+        return pages;
+      };
+
+      getPageRange().forEach((p) => {
+        if (p === '...') {
+          const dots = document.createElement('span');
+          dots.className = 'px-2 py-1 text-slate-400 text-xs';
+          dots.textContent = '...';
+          paginationButtons.appendChild(dots);
+        } else {
+          const btn = document.createElement('button');
+          btn.textContent = p;
+          btn.className = `px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${
+            p === currentPage
+              ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+              : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+          }`;
+          btn.onclick = () => {
+            currentPage = p;
+            renderTable();
+            window.scrollTo({ top: document.getElementById('directory').offsetTop - 60, behavior: 'smooth' });
+          };
+          paginationButtons.appendChild(btn);
+        }
+      });
+
+      // Next Button
+      const nextBtn = document.createElement('button');
+      nextBtn.innerHTML = `<i data-lucide="chevron-right" class="w-4 h-4"></i>`;
+      nextBtn.className = `p-2 rounded-lg border border-slate-300 text-slate-600 hover:bg-white transition ${currentPage === totalPages ? 'opacity-40 cursor-not-allowed' : 'hover:border-indigo-500'}`;
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.onclick = () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderTable();
+          window.scrollTo({ top: document.getElementById('directory').offsetTop - 60, behavior: 'smooth' });
+        }
+      };
+      paginationButtons.appendChild(nextBtn);
+    }
+
+    // Filtering logic
+    function handleSearch() {
+      const query = searchInput.value.trim().toLowerCase();
+      if (query.length > 0) {
+        clearSearchBtn.classList.remove('hidden');
+      } else {
+        clearSearchBtn.classList.add('hidden');
+      }
+
+      filteredData = companies.filter(comp => 
+        comp.name.toLowerCase().includes(query) || 
+        comp.url.toLowerCase().includes(query) ||
+        comp.id.toString() === query
+      );
+
+      currentPage = 1;
+      renderTable();
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', handleSearch);
+
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      filteredData = [...companies];
+      currentPage = 1;
+      renderTable();
+      searchInput.focus();
+    });
+
+    document.getElementById('resetSearchBtn').addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      filteredData = [...companies];
+      currentPage = 1;
+      renderTable();
+    });
+
+    itemsPerPageSelect.addEventListener('change', (e) => {
+      pageSize = e.target.value === 'all' ? 'all' : parseInt(e.target.value, 10);
+      currentPage = 1;
+      renderTable();
+    });
+
+    // Copy all visible links on current page
+    copyAllVisibleBtn.addEventListener('click', () => {
+      let pageItems = [];
+      if (pageSize === 'all') {
+        pageItems = filteredData;
+      } else {
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = startIndex + Number(pageSize);
+        pageItems = filteredData.slice(startIndex, endIndex);
+      }
+
+      if (pageItems.length === 0) return;
+
+      const formatted = pageItems.map(c => `${c.id}. ${c.name} - ${c.url}`).join('\n');
+      copyText(formatted, `Copied ${pageItems.length} company career links!`);
+    });
+
+    // Initialize on window load
+    window.onload = function() {
+      lucide.createIcons();
+      renderTable();
+    };
+  </script>
+</body>
+</html>
